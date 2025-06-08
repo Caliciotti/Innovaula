@@ -1,3 +1,12 @@
+export interface SessionData {
+  id: string;
+  dateTime: Date;
+  duration: string;
+  capacity: number;
+  enrolled: number;
+  status?: string;
+}
+
 export interface CoursePresencial {
   id: string;
   title: string;
@@ -5,6 +14,7 @@ export interface CoursePresencial {
   level?: string;
   price?: string;
   classDuration?: string;
+  sessions?: SessionData[];
 }
 
 export interface SpaceData {
@@ -31,19 +41,34 @@ const spaces: SpaceData[] = [
     coverImageAiHint: 'aula moderna',
     mapIconUrl: 'https://placehold.co/40x40.png',
     mapIconAiHint: 'icono aula',
-    courses: [
-      {
-        id: 'course1',
-        title: 'Matemáticas Avanzadas',
-        description: 'Curso presencial de matemáticas para nivel avanzado.',
-        level: 'Avanzado',
-        price: '$100',
-        classDuration: '2h'
-      }
-    ]
-  }
-];
+      courses: [
+        {
+          id: 'course1',
+          title: 'Matemáticas Avanzadas',
+          description: 'Curso presencial de matemáticas para nivel avanzado.',
+          level: 'Avanzado',
+          price: '$100',
+          classDuration: '2h',
+          sessions: [
+            {
+              id: 'session1',
+              dateTime: new Date('2024-07-01T10:00:00'),
+              duration: '2h',
+              capacity: 20,
+              enrolled: 5,
+              status: 'Programada'
+            }
+          ]
+        }
+      ]
+    }
+  ];
 
 export function getSpaceById(id: string): SpaceData | undefined {
   return spaces.find(s => s.id === id);
+}
+
+export function getCourseById(spaceId: string, courseId: string): CoursePresencial | undefined {
+  const space = getSpaceById(spaceId);
+  return space?.courses?.find(c => c.id === courseId);
 }

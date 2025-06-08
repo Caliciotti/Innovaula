@@ -5,7 +5,7 @@ import { PageTitle } from '@/components/shared/PageTitle';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { PlusCircle, CalendarDays, Clock, Users, Edit, Trash2 } from 'lucide-react';
+import { PlusCircle, CalendarDays, Users, Edit, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { getSpaceById, getCourseById, type SessionData } from '@/lib/spaces-data'; 
